@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	FileFormat = "day%d/input" 
+	FileFormat = "day%d/input"
 	SessionKey = "AOC_SESSION_KEY"
 	URLFormat  = "https://adventofcode.com/2019/day/%d/input"
 )
@@ -30,6 +30,10 @@ func GetDayInput(day int) (string, error) {
 	return "", fmt.Errorf("input for day %d not found", day)
 }
 
+func InputToSlice(input string) []string {
+	return strings.Split(input, "\n")
+}
+
 func inputFromFile(filePath string) (string, error) {
 	f, err := os.Open(filePath)
 	if err != nil {
@@ -45,19 +49,19 @@ func inputFromFile(filePath string) (string, error) {
 
 func inputFromRemote(url, session string) (string, error) {
 	client := new(http.Client)
-	
+
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		return "", err
 	}
 	req.Header.Add("Cookie", fmt.Sprintf("session=%s", session))
-	
+
 	resp, err := client.Do(req)
 	if err != nil {
 		return "", err
 	}
 	defer resp.Body.Close()
-	
+
 	out, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return "", err
