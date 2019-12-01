@@ -10,7 +10,7 @@ import (
 
 const (
 	FileFormat = "day%d/input" 
-	SessionKey = "SESSION"
+	SessionKey = "AOC_SESSION_KEY"
 	URLFormat  = "https://adventofcode.com/2019/day/%d/input"
 )
 
