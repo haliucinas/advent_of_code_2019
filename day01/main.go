@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"math"
-	"strconv"
 
 	aoc "github.com/haliucinas/advent_of_code_2019"
 )
@@ -15,15 +14,11 @@ func main() {
 		return
 	}
 
-	slice := aoc.InputToSlice(input)
-	digits := make([]int, len(slice))
-	for idx, item := range slice {
-		num, err := strconv.Atoi(item)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		digits[idx] = num
+	slice := aoc.InputToSlice(input, "\n")
+	digits, err := aoc.SliceToDigits(slice)
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
 
 	fmt.Printf("Part1: %d\n", part1(digits))

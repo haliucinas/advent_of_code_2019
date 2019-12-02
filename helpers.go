@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -30,8 +31,20 @@ func GetDayInput(day int) (string, error) {
 	return "", fmt.Errorf("input for day %d not found", day)
 }
 
-func InputToSlice(input string) []string {
-	return strings.Split(input, "\n")
+func InputToSlice(input string, separator string) []string {
+	return strings.Split(input, separator)
+}
+
+func SliceToDigits(slice []string) ([]int, error) {
+	digits := make([]int, len(slice))
+	for idx, item := range slice {
+		num, err := strconv.Atoi(item)
+		if err != nil {
+			return nil, err
+		}
+		digits[idx] = num
+	}
+	return digits, nil
 }
 
 func inputFromFile(filePath string) (string, error) {
