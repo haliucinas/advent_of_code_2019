@@ -47,6 +47,13 @@ func SliceToDigits(slice []string) ([]int, error) {
 	return digits, nil
 }
 
+func Abs(a int) int {
+	if a > 0 {
+		return a
+	}
+	return -a
+}
+
 func inputFromFile(filePath string) (string, error) {
 	f, err := os.Open(filePath)
 	if err != nil {
