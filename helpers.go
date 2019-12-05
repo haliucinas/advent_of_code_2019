@@ -54,6 +54,13 @@ func Abs(a int) int {
 	return -a
 }
 
+func BoolToInt(b bool) int {
+	if b {
+		return 1
+	}
+	return 0
+}
+
 func inputFromFile(filePath string) (string, error) {
 	f, err := os.Open(filePath)
 	if err != nil {
